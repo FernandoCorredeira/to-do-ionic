@@ -9,11 +9,11 @@ export class ServiceTask {
 
   constructor() {}
 
-  public async setTasks(task: Task[]) {
+  public async setTasks() {
     {
       await Preferences.set({
         key: 'task',
-        value: JSON.stringify(task),
+        value: JSON.stringify(this.tasks),
       });
     }
   }
@@ -26,13 +26,13 @@ export class ServiceTask {
     let task: Task = { value: value, date: new Date(date), done: false };
     this.tasks.push(task);
     //console.log(this.tasks)
-    let resp = this.setTasks(this.tasks);
+    let resp = this.setTasks();
     console.log(resp);
   }
 
   public async delTask(index: number) {
     this.tasks.splice(index, 1);
-    await this.setTasks(this.tasks);
+    await this.setTasks();
   }
 
   public updateTask(index: number, value: string, date: string) {

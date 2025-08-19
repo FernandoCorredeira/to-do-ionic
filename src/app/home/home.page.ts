@@ -148,6 +148,5 @@ export class HomePage {
     });
 
     return await popover.present();
-
   }
 }

@@ -29,16 +29,9 @@
 
   <ion-list *ngIf="type == 'pending'">
     <ion-item-sliding *ngFor="let task of serviceTask.getTasks(); let i = index">
-      <ion-item-options side="start">
-        <ion-item-option color="success">
-          <ion-icon slot="top" name="archive"></ion-icon>
-          Arquivar
-        </ion-item-option>
-      </ion-item-options>
-
-      <ion-item *ngIf="!task.done">
+       <ion-item *ngIf="!task.done">
         <ion-label>{{task.value}}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="task.done"></ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="task.done" (ionChange)="serviceTask.setTasks()"></ion-checkbox>
         <ion-badge color="warning" *ngIf="task.date.getDate()">
           {{task.date.getDate() + "/" + (task.date.getMonth()+1) + "/" + task.date.getFullYear()}}
         </ion-badge>
@@ -62,16 +55,9 @@
 
   <ion-list *ngIf="type == 'done'">
     <ion-item-sliding *ngFor="let task of serviceTask.getTasks(); let i = index">
-      <ion-item-options side="start">
-        <ion-item-option color="success">
-          <ion-icon slot="top" name="archive"></ion-icon>
-          Arquivar
-        </ion-item-option>
-      </ion-item-options>
-
       <ion-item *ngIf="task.done">
         <ion-label>{{task.value}}</ion-label>
-        <ion-checkbox slot="start" [(ngModel)]="task.done"></ion-checkbox>
+        <ion-checkbox slot="start" [(ngModel)]="task.done" (ionChange)="serviceTask.setTasks()"></ion-checkbox>
         <ion-badge color="warning" *ngIf="task.date.getDate()">
           {{task.date.getDate() + "/" + (task.date.getMonth()+1) + "/" + task.date.getFullYear()}}
         </ion-badge>
